@@ -1,0 +1,4 @@
+#!/bin/sh
+sockproc /tmp/shell.sock &
+nginx
+

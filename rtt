@@ -1,0 +1,11 @@
+#!/bin/bash
+#####################################################################
+# The script accept IP as the first argument and do ping to this IP #
+#####################################################################
+ip=$1
+host=$(hostname -s)
+[[ -z "$ip" ]] && echo "Usage: $0 ip-address" && exit 127
+[[ $ip =~ ^[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}$ ]] \
+&& RTT=$(ping -4w1 -qc1 ${ip}|grep -E 'round-trip|rtt'|awk -F/ '{print $4}') \
+&& echo "${host}:${RTT}"
+
